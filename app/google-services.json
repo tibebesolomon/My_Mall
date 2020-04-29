@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "112525963693",
+    "firebase_url": "https://my-mall-2be2d.firebaseio.com",
+    "project_id": "my-mall-2be2d",
+    "storage_bucket": "my-mall-2be2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112525963693:android:9e0c78a7543bc3a35bb124",
+        "android_client_info": {
+          "package_name": "com.ethiopia.mymall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112525963693-1eje5lg75o92dbd5lgsn1qh1f88od7i4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNt_6igHtZGa68oldzG3ZllYBhspiQ0ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112525963693-1eje5lg75o92dbd5lgsn1qh1f88od7i4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
