@@ -1,5 +1,6 @@
 package com.ethiopia.mymall;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         String icon = categoryModelList.get(position).getCategoryIconLink();
         String name = categoryModelList.get(position).getCategoryName();
-        viewHolder.setCategoryName(name);
+        viewHolder.setCategory(name,position);
 
     }
 
@@ -46,18 +47,29 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         private ImageView categoryIcon;
         private TextView categoryName;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             categoryIcon = itemView.findViewById(R.id.category_icon);
             categoryName = itemView.findViewById(R.id.category_name);
         }
 
         private void setCategoryIcon(){
-
+            ////todo:set catagoryicons here;
         }
 
-        private void setCategoryName(String name){
+        private void setCategory(final String name, final int position){
             categoryName.setText(name);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (position != 0) {
+                        Intent catagoryIntent = new Intent(itemView.getContext(), CategoryActivity.class);
+                        catagoryIntent.putExtra("CategoryName", name);
+                        itemView.getContext().startActivity(catagoryIntent);
+                    }
+                }
+            });
         }
 
     }
