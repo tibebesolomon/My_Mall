@@ -1,6 +1,7 @@
 package com.ethiopia.mymall;
 
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,8 @@ public class MyWishlistFragment extends Fragment {
     }
 
     private RecyclerView wishlistRecyclerView;
+    private Dialog loadingDialog;
+    public static WishlistAdapter wishlistAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,20 +36,29 @@ public class MyWishlistFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_wishlist, container, false);
 
+        /////loading dialog
+        loadingDialog = new Dialog(getContext());
+        loadingDialog.setContentView(R.layout.loading_progress_dialog);
+        loadingDialog.setCancelable(false);
+        loadingDialog.getWindow().setBackgroundDrawable(getContext().getDrawable(R.drawable.slider_background));
+        loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        loadingDialog.show();
+        /////loading dialog
+
         wishlistRecyclerView = view.findViewById(R.id.my_wishlist_recyclerview);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         wishlistRecyclerView.setLayoutManager(linearLayoutManager);
 
-        List<WishlistModel> wishlistModelList = new ArrayList<>();
-        wishlistModelList.add(new WishlistModel(R.mipmap.image2,"Samsung Galaxy s9",1,"3",145,"Birr.4999/-","Birr.5999/-","Cash on delivery"));
-        wishlistModelList.add(new WishlistModel(R.mipmap.image2,"Samsung Galaxy s9",0,"3",145,"Birr.4999/-","Birr.5999/-","Cash on delivery"));
-        wishlistModelList.add(new WishlistModel(R.mipmap.image2,"Samsung Galaxy s9",2,"3",145,"Birr.4999/-","Birr.5999/-","Cash on delivery"));
-        wishlistModelList.add(new WishlistModel(R.mipmap.image2,"Samsung Galaxy s9",4,"3",145,"Birr.4999/-","Birr.5999/-","Cash on delivery"));
-        wishlistModelList.add(new WishlistModel(R.mipmap.image2,"Samsung Galaxy s9",1,"3",145,"Birr.4999/-","Birr.5999/-","Cash on delivery"));
+        if (DBqueries.wishlistModelList.size() == 0){
+            DBqueries.wishList.clear();
+            DBqueries.loadWishList(getContext(),loadingDialog,true);
+        }else {
+            loadingDialog.dismiss();
+        }
 
-        WishlistAdapter wishlistAdapter = new WishlistAdapter(wishlistModelList);
+        wishlistAdapter = new WishlistAdapter(DBqueries.wishlistModelList,true);
         wishlistRecyclerView.setAdapter(wishlistAdapter);
         wishlistAdapter.notifyDataSetChanged();
         return view;

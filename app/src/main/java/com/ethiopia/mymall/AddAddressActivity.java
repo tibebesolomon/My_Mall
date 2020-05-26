@@ -4,10 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class AddAddressActivity extends AppCompatActivity {
+
+    private Button saveBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +23,16 @@ public class AddAddressActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle("Add a new address");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        saveBtn = findViewById(R.id.save_btn);
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent deliveryIntent = new Intent(AddAddressActivity.this,DeliveryActivity.class);
+                startActivity(deliveryIntent);
+                finish();
+            }
+        });
     }
 
     @Override

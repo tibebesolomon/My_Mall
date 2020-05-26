@@ -49,7 +49,7 @@ public class MyRewardsFragment extends Fragment {
         rewardModelList.add(new RewardModel("Discount","till 2nd,June 2016","GET 20% CASHBACK on any product above Birr.200/- and below Birr.2550/-."));
         rewardModelList.add(new RewardModel("Buy 1 get 1 free","till 2nd,June 2016","GET 20% CASHBACK on any product above Birr.200/- and below Birr.2550/-."));
 
-        MyRewardsAdapter myRewardsAdapter = new MyRewardsAdapter(rewardModelList);
+        MyRewardsAdapter myRewardsAdapter = new MyRewardsAdapter(rewardModelList,false);
         rewardsRecyclerView.setAdapter(myRewardsAdapter);
         myRewardsAdapter.notifyDataSetChanged();
 
